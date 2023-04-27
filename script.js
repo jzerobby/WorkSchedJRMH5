@@ -1,8 +1,8 @@
-var description = $(".description");
+var textarea = $(".col-8 description");
 
 var eventsData;
 
-description.text(eventsData);
+textarea.text(eventsData);
 
 // current day is displayed at the top of the calendar
 var today = dayjs();
@@ -38,11 +38,15 @@ function loadStoredData() {
             hour17: "",
         }
     }
+    for (let i = 9; i < 18; i++) {
+        eventsData["hour" + i];
+    }    
 }
 
 function handleSaveClick(event) {
     // grab data from HTML
-    var hourBlock = $(event.target).parent();
+    var hourBlock = $(event.target).parent().closest("div");
+    console.log(hourBlock);
     var value = hourBlock.children("textarea").val();
     var hour = hourBlock.attr('id').split("-")[1];
 
